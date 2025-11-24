@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const quizSchema = new mongoose.Schema({
   question: { type: String, required: true },
   options: [{ type: String, required: true }],
-  correctAnswer: { type: Number }, // index of correct option
+  correctAnswer: [{ type: Number, required: true }],
 });
 
 // Content Item schema: can be chapter or quiz
