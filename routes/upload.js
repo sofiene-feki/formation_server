@@ -12,7 +12,7 @@ router.post("/upload/video", upload.single("file"), async (req, res) => {
     const bufferStream = new Readable();
     bufferStream.push(req.file.buffer);
     bufferStream.push(null);
-
+    const duration = req.body.duration; // ⬅️ receive it
     const result = cloudinary.uploader.upload_stream(
       {
         resource_type: "video",
@@ -20,7 +20,11 @@ router.post("/upload/video", upload.single("file"), async (req, res) => {
       },
       (error, result) => {
         if (error) return res.status(500).json({ error });
-        res.json({ url: result.secure_url, public_id: result.public_id });
+        res.json({
+          url: result.secure_url,
+          public_id: result.public_id,
+          duration,
+        });
       }
     );
 

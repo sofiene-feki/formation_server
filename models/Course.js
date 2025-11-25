@@ -16,6 +16,7 @@ const contentItemSchema = new mongoose.Schema({
   videoUrl: {
     url: { type: String },
     public_id: { type: String },
+    duration: { type: Number }, // in seconds
   },
   content: { type: String }, // Rich text content
   imageUrl: {
